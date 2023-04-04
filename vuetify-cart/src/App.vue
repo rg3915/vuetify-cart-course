@@ -1,5 +1,70 @@
 <template>
-  <v-app>
+  <v-app theme="dark">
+    <v-navigation-drawer
+      permanent
+      width="500"
+      location="right"
+    >
+      <div class="d-flex flex-column h-100">
+        <div class="d-flex align-center justify-space-between pa-4">
+          <h3>Carrinho de compras</h3>
+
+          <v-btn icon="mdi-close"></v-btn>
+        </div>
+
+        <v-list>
+          <v-list-item>
+            <div class="d-flex">
+              <div class="bg-white px-2 mr-4">
+                <img
+                  src="https://images.kabum.com.br/produtos/fotos/99866/monitor-lg-led-23-8-widescreen-full-hd-ips-hdmi-24mk430h_1547830365_m.jpg"
+                  alt="monitor"
+                  style="width: 120px;"
+                >
+              </div>
+
+              <div class="d-flex flex-column justify-space-between">
+                <div>
+                  <h5 class="font-weight-regular">Monitor LG 23.8' IPS, Full HD, HDMI, VESA, Ajuste de Ângulo - 24MK430H</h5>
+                  <div>
+                    <strong>R$ 729,99</strong>
+                  </div>
+                </div>
+
+                <div class="d-flex align-center justify-space-between mt-4">
+                  <div class="w-25">
+                    <v-text-field
+                      type="number"
+                      variant="outlined"
+                      label="Qty"
+                      min="0"
+                      density="compact"
+                      hide-details
+                    />
+                  </div>
+                  <div>
+                    <a href="">Remover</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-list-item>
+
+          <v-divider class="my-4" />
+        </v-list>
+
+        <div class="mt-auto pa-4">
+          <v-btn color="primary" block>Finalizar compra</v-btn>
+
+          <div class="text-center mt-2">
+            ou
+            <a href="">Continue comprando</a>
+          </div>
+        </div>
+
+      </div>
+    </v-navigation-drawer>
+
     <v-layout>
       <v-app-bar
         flat
