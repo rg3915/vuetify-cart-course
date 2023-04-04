@@ -1,9 +1,10 @@
 <template>
   <v-app theme="dark">
     <v-navigation-drawer
-      permanent
       width="500"
+      temporary
       location="right"
+      v-model="isOpen"
     >
       <div class="d-flex flex-column align-center justify-center h-100">
         <div class="text-center">
@@ -12,6 +13,7 @@
           <v-btn
             color="primary"
             class="mt-2"
+            @click="close()"
           >Continuar comprando</v-btn>
         </div>
       </div>
@@ -20,7 +22,10 @@
         <div class="d-flex align-center justify-space-between pa-4">
           <h3>Carrinho de compras</h3>
 
-          <v-btn icon="mdi-close"></v-btn>
+          <v-btn
+            icon="mdi-close"
+            @click="close()"
+          ></v-btn>
         </div>
 
         <div class="h-100 overflow-y-auto">
@@ -88,7 +93,10 @@
 
             <div class="text-center mt-2">
               ou
-              <a href="">Continue comprando</a>
+              <a
+                href=""
+                @click.stop.prevent="close()"
+              >Continue comprando</a>
             </div>
           </div>
 
@@ -106,12 +114,17 @@
         <v-app-bar-title>Vuetify cart</v-app-bar-title>
 
         <template #append>
-          <v-badge
-            color="info"
-            dot
+          <v-btn
+            icon
+            @click="open()"
           >
-            <v-icon icon="mdi-cart"></v-icon>
-          </v-badge>
+            <v-badge
+              color="info"
+              dot
+            >
+              <v-icon icon="mdi-cart"></v-icon>
+            </v-badge>
+          </v-btn>
         </template>
       </v-app-bar>
 
@@ -171,5 +184,7 @@
 </template>
 
 <script setup>
+import { useCart } from '@/composables/useCart'
+const { isOpen, open, close } = useCart()
 
 </script>
