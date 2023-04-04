@@ -5,6 +5,17 @@
       width="500"
       location="right"
     >
+      <div class="d-flex flex-column align-center justify-center h-100">
+        <div class="text-center">
+          O seu carrinho está vazio.
+          <br>
+          <v-btn
+            color="primary"
+            class="mt-2"
+          >Continuar comprando</v-btn>
+        </div>
+      </div>
+
       <div class="d-flex flex-column h-100">
         <div class="d-flex align-center justify-space-between pa-4">
           <h3>Carrinho de compras</h3>
@@ -106,6 +117,20 @@
 
       <v-main class="mt-6">
         <v-container>
+          <div class="text-center">
+            Nenhum produto disponível. Volte mais tarde :)
+          </div>
+
+          <div class="text-center">
+            <v-progress-circular
+              indeterminate
+              size="small"
+              width="3"
+            />
+            <br>
+            Carregando produtos
+          </div>
+
           <v-row>
             <v-col
               cols="12"
