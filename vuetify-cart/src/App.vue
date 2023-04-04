@@ -130,11 +130,10 @@
 
       <v-main class="mt-6">
         <v-container>
-          <div class="text-center">
-            Nenhum produto disponível. Volte mais tarde :)
-          </div>
-
-          <div class="text-center">
+          <div
+            v-if="isLoading"
+            class="text-center"
+          >
             <v-progress-circular
               indeterminate
               size="small"
@@ -144,8 +143,17 @@
             Carregando produtos
           </div>
 
-          <v-row>
+          <div
+            v-else-if="!products.length"
+            class="text-center"
+          >
+            Nenhum produto disponível. Volte mais tarde :)
+          </div>
+
+          <v-row v-else>
             <v-col
+              v-for="product in products"
+              :key="product.id"
               cols="12"
               sm="6"
               md="4"
@@ -156,15 +164,24 @@
                 class="border"
               >
                 <div class="bg-white px-6 py-2">
-                  <v-img src="https://images.kabum.com.br/produtos/fotos/99866/monitor-lg-led-23-8-widescreen-full-hd-ips-hdmi-24mk430h_1547830365_m.jpg"></v-img>
+                  <v-img :src="product.image"></v-img>
                 </div>
                 <v-card-text>
-                  <h4>Monitor LG 23.8' IPS, Full HD, HDMI, VESA, Ajuste de Ângulo - 24MK430H</h4>
+                  <h4>{{ product.name }}</h4>
 
                   <div class="my-4">
-                    <div class="font-weight-light text-decoration-line-through mb-n2">R$ 863,62</div>
-                    <div class="text-h5 font-weight-bold">R$ 729,99</div>
-                    <div class="font-weight-light">À vista no PIX</div>
+                    <template v-if="product.promotion">
+                      <div class="font-weight-light text-decoration-line-through mb-n2">R$ {{ product.price }}</div>
+                      <div class="text-h5 font-weight-bold">R$ {{ product.promotion }}</div>
+                    </template>
+                    <template v-else>
+                      <div class="text-h5 font-weight-bold">R$ {{ product.price }}</div>
+                    </template>
+
+                    <div
+                      v-if="product.conditions"
+                      class="font-weight-light"
+                    >{{ product.conditions }}</div>
                   </div>
 
                   <v-btn
@@ -184,7 +201,16 @@
 </template>
 
 <script setup>
+import axios from 'axios'
+import { useAsyncState } from '@vueuse/core'
+
 import { useCart } from '@/composables/useCart'
 const { isOpen, open, close } = useCart()
+
+const { state: products, isLoading } = useAsyncState(
+  axios
+  .get('http://localhost:3000/products')
+  .then(t => t.data), [],
+)
 
 </script>
