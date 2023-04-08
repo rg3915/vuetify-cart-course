@@ -207,6 +207,7 @@ import { useAsyncState } from '@vueuse/core'
 import { useCart } from '@/composables/useCart'
 const { isOpen, open, close } = useCart()
 
+// [] é o initial state.
 const { state: products, isLoading } = useAsyncState(
   axios
   .get('http://localhost:3000/products')
