@@ -112,7 +112,6 @@
         class="text-center border-b"
       >
         <v-app-bar-title>Vuetify cart</v-app-bar-title>
-
         <template #append>
           <v-btn
             icon
@@ -130,6 +129,7 @@
 
       <v-main class="mt-6">
         <v-container>
+
           <div
             v-if="isLoading"
             class="text-center"
@@ -188,6 +188,7 @@
                     flat
                     block
                     color="primary"
+                    @click="add(product)"
                   >Adicionar</v-btn>
                 </v-card-text>
               </v-card>
@@ -205,7 +206,7 @@ import axios from 'axios'
 import { useAsyncState } from '@vueuse/core'
 
 import { useCart } from '@/composables/useCart'
-const { isOpen, open, close } = useCart()
+const { isOpen, open, close, add, cart } = useCart()
 
 // [] é o initial state.
 const { state: products, isLoading } = useAsyncState(
