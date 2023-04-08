@@ -38,7 +38,22 @@
             block
             color="primary"
             @click="add(product)"
-          >Adicionar</v-btn>
+          >
+            Adicionar
+            <template #prepend>
+              <v-badge
+                v-if="inCart(product.id)"
+                color="success"
+                dot
+              >
+                <v-icon icon="mdi-cart" />
+              </v-badge>
+              <v-icon
+                v-else
+                icon="mdi-cart"
+              />
+            </template>
+          </v-btn>
         </v-card-text>
       </v-card>
     </v-col>
@@ -53,5 +68,6 @@ defineProps({
   products: Array
 })
 
-const { add } = useCart()
+const { add, inCart } = useCart()
+
 </script>

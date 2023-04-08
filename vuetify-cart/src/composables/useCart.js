@@ -35,6 +35,10 @@ export const useCart = () => {
     if (index >= 0) cart.value.splice(index, 1)
   }
 
+  function inCart(id) {
+    return cart.value.some(obj => obj.id === id)
+  }
+
   const isEmpty = computed(() => !cart.value.length)
 
   const total = computed(() => {
@@ -51,6 +55,7 @@ export const useCart = () => {
     add,
     remove,
     cart,
+    inCart,
     isEmpty,
     total,
   }
