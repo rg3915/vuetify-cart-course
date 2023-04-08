@@ -1,7 +1,8 @@
 import { ref, computed } from 'vue'
+import { useStorage } from '@vueuse/core'
 
 const isOpen = ref(false)
-const cart = ref([])
+const cart = useStorage('cart', [])
 
 export const useCart = () => {
   function open() {
