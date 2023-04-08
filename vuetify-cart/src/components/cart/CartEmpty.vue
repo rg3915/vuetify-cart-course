@@ -1,0 +1,13 @@
+<template>
+  <div class="d-flex flex-column align-center justify-center h-100">
+    <div class="text-center">
+      O seu carrinho está vazio.
+      <br>
+      <v-btn
+        color="primary"
+        class="mt-2"
+        @click="close()"
+      >Continuar comprando</v-btn>
+    </div>
+  </div>
+</template>
