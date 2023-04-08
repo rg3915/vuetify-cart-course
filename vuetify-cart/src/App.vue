@@ -94,7 +94,7 @@ import { useAsyncState } from '@vueuse/core'
 import { useCart } from '@/composables/useCart'
 import Cart from '@/components/cart/Cart.vue'
 import TheHeader from '@/components/cart/TheHeader.vue'
-const { isOpen, open, add } = useCart()
+const { isOpen, add } = useCart()
 
 // [] é o initial state.
 const { state: products, isLoading } = useAsyncState(

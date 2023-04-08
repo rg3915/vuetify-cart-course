@@ -36,16 +36,20 @@
                 <div class="d-flex align-center justify-space-between mt-4">
                   <div class="w-25">
                     <v-text-field
+                      v-model="product.quantity"
                       type="number"
                       variant="outlined"
                       label="Qty"
-                      min="0"
+                      min="1"
                       density="compact"
                       hide-details
                     />
                   </div>
                   <div>
-                    <a href="">Remover</a>
+                    <a
+                      href=""
+                      @click.stop.prevent="remove(product.id)"
+                    >Remover</a>
                   </div>
                 </div>
               </div>
@@ -94,6 +98,6 @@
 <script setup>
 import { useCart } from '@/composables/useCart'
 
-const { cart, close } = useCart()
+const { cart, close, remove } = useCart()
 
 </script>

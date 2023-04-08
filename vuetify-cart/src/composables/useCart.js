@@ -29,6 +29,12 @@ export const useCart = () => {
     }
   }
 
+  function remove(id) {
+    const index = cart.value.findIndex(o => o.id === id)
+
+    if (index >= 0) cart.value.splice(index, 1)
+  }
+
   const isEmpty = computed(() => !cart.value.length)
 
   return {
@@ -36,6 +42,7 @@ export const useCart = () => {
     open,
     close,
     add,
+    remove,
     cart,
     isEmpty,
   }
