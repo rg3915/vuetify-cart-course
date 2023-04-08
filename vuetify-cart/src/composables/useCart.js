@@ -37,6 +37,13 @@ export const useCart = () => {
 
   const isEmpty = computed(() => !cart.value.length)
 
+  const total = computed(() => {
+    return cart.value.reduce((total, product) => {
+      const finalPrice = product.promotion ?? product.price
+      return total + (finalPrice * product.quantity)
+    }, 0)
+  })
+
   return {
     isOpen,
     open,
@@ -45,5 +52,6 @@ export const useCart = () => {
     remove,
     cart,
     isEmpty,
+    total,
   }
 }
