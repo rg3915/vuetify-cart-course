@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 
 const isOpen = ref(false)
 const cart = ref([])
@@ -29,11 +29,14 @@ export const useCart = () => {
     }
   }
 
+  const isEmpty = computed(() => !cart.value.length)
+
   return {
     isOpen,
     open,
     close,
     add,
     cart,
+    isEmpty,
   }
 }
